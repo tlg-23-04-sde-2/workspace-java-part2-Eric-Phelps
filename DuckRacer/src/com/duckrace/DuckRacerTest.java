@@ -21,5 +21,7 @@ class DuckRacerTest
 //        rewardsList.add(Reward.DEBIT_CARD);
 //        rewardsList.add(Reward.DEBIT_CARD);
 //        rewardsList.add(Reward.DEBIT_CARD);
+
+        System.out.println(rewardsList);
     }
 }
