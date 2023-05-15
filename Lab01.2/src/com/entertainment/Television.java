@@ -1,5 +1,7 @@
 package com.entertainment;
 
+import java.util.Objects;
+
 public class Television
 {
     //properties
@@ -50,6 +52,16 @@ public class Television
     public void setVolume(int volume)
     {
         this.volume = volume;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        //this will be a poorly written hash function, because it easily yields "hash collisions".
+        //a HC is when diff objects hash to the same value.
+        //return getBrand().length() + getVolume();
+        return Objects.hash(getBrand(),getVolume());
+
     }
 
     @Override
