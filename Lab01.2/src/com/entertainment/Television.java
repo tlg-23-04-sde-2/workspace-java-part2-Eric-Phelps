@@ -58,10 +58,22 @@ public class Television implements Comparable<Television>
         this.volume = volume;
     }
 
+    /*
+     * Nat order is defined by brand then by volume.
+     * to be consistant with equals, we must use the same properties
+     * for nat order that we use for equals() and hashcode.
+     */
     @Override
     public int compareTo(Television other)
     {
-        return String.CASE_INSENSITIVE_ORDER.compare(this.getBrand(), other.getBrand());
+        int result = this.getBrand().compareTo(other.getBrand());
+
+        if (result == 0) // if tied on brand, break the tie by volume.
+        {
+            result = Integer.compare(this.getVolume(), other.getVolume());
+        }
+
+        return result;
     }
 
     @Override
