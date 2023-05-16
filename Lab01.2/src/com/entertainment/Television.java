@@ -2,7 +2,11 @@ package com.entertainment;
 
 import java.util.Objects;
 
-public class Television
+/*
+ * Nat order is defined by string brand.
+ */
+
+public class Television implements Comparable<Television>
 {
     //properties
     private String brand;
@@ -52,6 +56,12 @@ public class Television
     public void setVolume(int volume)
     {
         this.volume = volume;
+    }
+
+    @Override
+    public int compareTo(Television other)
+    {
+        return String.CASE_INSENSITIVE_ORDER.compare(this.getBrand(), other.getBrand());
     }
 
     @Override
