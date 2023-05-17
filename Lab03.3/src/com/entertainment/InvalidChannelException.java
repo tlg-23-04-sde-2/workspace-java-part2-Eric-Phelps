@@ -8,21 +8,24 @@
  */
 package com.entertainment;
 
-public class InvalidChannelException
-extends Exception {
-  
-  public InvalidChannelException() {
-  }
+public class InvalidChannelException extends Exception {
 
-  public InvalidChannelException(String message) {
-    super(message);
-  }
+    public InvalidChannelException()
+    {
+    }
 
-  public InvalidChannelException(Throwable cause) {
-    super(cause);
-  }
+    public InvalidChannelException(String message)
+    {
+        super(message);
+    }
 
-  public InvalidChannelException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public InvalidChannelException(Throwable cause)
+    {
+        super(cause);
+    }
+
+    public InvalidChannelException(String message, Throwable cause)
+    {
+        super(message, cause);
+    }
 }

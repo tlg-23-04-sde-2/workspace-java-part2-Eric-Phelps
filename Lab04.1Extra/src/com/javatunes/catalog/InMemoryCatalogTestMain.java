@@ -6,7 +6,7 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.javatunes.catalog.test;
+package com.javatunes.catalog;
 
 import com.javatunes.catalog.InMemoryCatalog;
 import com.javatunes.catalog.MusicCategory;
@@ -14,7 +14,7 @@ import com.javatunes.catalog.MusicItem;
 
 import java.util.Collection;
 
-class InMemoryCatalogTest
+class InMemoryCatalogTestMain
 {
 
     /*
@@ -33,7 +33,7 @@ class InMemoryCatalogTest
         //testGetAll();
     }
 
-    private static void testFindById()
+    private static void testFindById()//new test done
     {
         InMemoryCatalog catalog = new InMemoryCatalog();
         System.out.println(catalog.findById(6L));
@@ -47,14 +47,14 @@ class InMemoryCatalogTest
         System.out.println(items);
     }
 
-    private static void testFindByCategory()
+    private static void testFindByCategory()//new test done
     {
         InMemoryCatalog catalog = new InMemoryCatalog();
         Collection<MusicItem> items = catalog.findByCategory(MusicCategory.POP);
         dump(items);
     }
 
-    private static void testSize()
+    private static void testSize()// new test done
     {
         InMemoryCatalog catalog = new InMemoryCatalog();
         System.out.println(catalog.size());

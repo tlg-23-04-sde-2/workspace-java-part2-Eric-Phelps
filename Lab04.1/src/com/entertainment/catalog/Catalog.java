@@ -20,15 +20,25 @@ public class Catalog {
   private static final Collection<Television> catalog = new ArrayList<>(30);
 
   // prevent direct instantiation, this is an all-static class
-  private Catalog() {
+  private Catalog()
+  {
   }
   
   /**
    * Searches catalog by brand, and returns a collection of matching Televisions.
    * A no-matches result should be an empty collection (not null).
    */
-  public static Collection<Television> findByBrand(String brand) {
-    return null;
+  public static Collection<Television> findByBrand(String brand)
+  {
+    Collection<Television> result = new ArrayList<>();
+    //TODO: implement the finding of the matching televisions
+    for (Television tv : catalog) {
+      if(tv.getBrand().equals(brand)){
+        result.add(tv);
+      }
+    }
+
+    return result;
   }
   
   /**
@@ -37,7 +47,12 @@ public class Catalog {
    * A no-brands-passed result should be an empty map (not null).
    */
   public static Map<String,Collection<Television>> findByBrands(String... brands) {
-    return null;
+    Map<String,Collection<Television>> result = new HashMap<>();
+    for (Television tv : catalog){
+
+    }
+    //TODO: see the tip in jays classroom whiteboard
+    return result;
   }
 
   /**
