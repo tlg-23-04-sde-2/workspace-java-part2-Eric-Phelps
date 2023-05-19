@@ -1,6 +1,12 @@
 package com.duckrace;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /*
  * This is a lookup table of ids to student names.
@@ -36,7 +42,30 @@ import java.util.Map;
  */
 
 class Board {
-    private final Map<Integer,String> studentIdMap = null;
-    private final Map<Integer,DuckRacer> racerMap  = null;
+    private final Map<Integer,String> studentIdMap = loadStudentIdMap();
+    private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();//tree map maintains natural order of the keys.
+
+    //for testing purposes
+    void dumpStudentIdMap(){
+        System.out.println(studentIdMap);
+    }
+
+    private Map<Integer, String> loadStudentIdMap(){
+        Map<Integer, String> idMap = new HashMap<>();
+
+        //how are we going to read in our csv file to get the information into the new Hashmap.
+        try {
+            List<String> lines = Files.readAllLines(Path.of("conf/student-ids.csv"));
+            //for each line in the file, split it into tokens
+            for (String line: lines){
+                String[] tokens = line.split(","); // ["5","eric"]
+                idMap.put(Integer.valueOf(tokens[0]), tokens[1]);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return idMap;
+    }
 
 }
