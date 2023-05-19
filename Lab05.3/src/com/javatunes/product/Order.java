@@ -8,13 +8,29 @@
  */
 package com.javatunes.product;
 
+import com.javatunes.billing.Location;
+import com.javatunes.billing.TaxCalculator;
+import com.javatunes.billing.TaxCalculatorFactory;
+
 import java.util.Collection;
 
 public class Order {
-    private String id;
+    private final String id; // effectively final, but I don't like the paint if I can get rid of it.
+    private final Location location;
+    private double cartTotal;
 
-    public Order(String id) {
+    public Order(String id, Location location) {
         this.id = id;
+        this.location = location;
+    }
+
+    public double getTax(){
+        // fetch the appropriate TaxCalculator from the factory.
+        //coding by intention, code as if what you need is already there, then you know what you need to create.
+        TaxCalculator calc = TaxCalculatorFactory.getTaxCalculator(getLocation());
+
+        //delegate to it for the actual work
+        return calc.taxAmount(getCartTotal());
     }
 
     /**
@@ -29,10 +45,19 @@ public class Order {
         for (Product product : cartItems) {
             System.out.println(product.getCode());
         }
-        System.out.println("Order Total: " + cart.total());
+        cartTotal = cart.total();
+        System.out.println("Order Total: " + cartTotal);
     }
 
     public String getId() {
         return id;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public double getCartTotal() {
+        return cartTotal;
     }
 }
