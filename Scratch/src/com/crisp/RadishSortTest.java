@@ -1,6 +1,7 @@
 package com.crisp;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 class RadishSortTest
@@ -14,14 +15,35 @@ class RadishSortTest
         radishes.add(new Radish("red", 0.75, 3.1, 7));
         radishes.add(new Radish("white", 1.0, 1.0,2));
 
-        radishes.sort(null);//passing null equals natural order
         System.out.println("sort by Natural order (size)");
+        radishes.sort(null);//passing null equals natural order
         dump(radishes);
         System.out.println();
 
         radishes.sort(new RadishColorComparator());
         System.out.println("sort by color: ");
         dump(radishes);
+        System.out.println();
+
+        System.out.println("sort by tailLength, via anonymous Comparator");
+        radishes.sort(new Comparator<Radish>() {
+            @Override
+            public int compare(Radish r1, Radish r2) {
+                return Double.compare(r1.getTailLength(), r2.getTailLength());
+            }
+        });
+        dump(radishes);
+        System.out.println();
+
+        System.out.println("sort by guysOnTop (descending), via anonymous Comparator");
+        radishes.sort(new Comparator<Radish>() {
+            @Override
+            public int compare(Radish r1, Radish r2) {
+                return Integer.compare(r2.getGuysOnTop(), r1.getGuysOnTop());
+            }
+        });
+        dump(radishes);
+        System.out.println();
     }
 
     private static void dump(List<Radish> radishList)
