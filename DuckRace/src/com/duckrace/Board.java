@@ -3,10 +3,7 @@ package com.duckrace;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /*
  * This is a lookup table of ids to student names.
@@ -45,9 +42,33 @@ class Board {
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();//tree map maintains natural order of the keys.
 
-    //for testing purposes
-    void dumpStudentIdMap(){
-        System.out.println(studentIdMap);
+    //updates the board by making th duck racer win.
+    public void update(int id, Reward reward){
+        DuckRacer racer = null;
+        if (racerMap.containsKey(id)){
+            racer = racerMap.get(id);
+        }
+        else{
+            racer = new DuckRacer(id, studentIdMap.get(id));
+            racerMap.put(id, racer);
+        }
+        racer.win(reward);
+    }
+
+    //TODO: render this data pretty, for display to the end user.
+    void show() {
+        Collection<DuckRacer> racers = racerMap.values();
+        System.out.println("DUCK RACE RESULTS");
+        System.out.println("=================");
+        System.out.println();
+        System.out.println("id       name       wins   rewards");
+        System.out.println("__       ____       ____   _______");
+        //see java part 1 session 5 formatted output
+        for (DuckRacer racer : racers)
+        {
+            System.out.println(racer.getId()+"       "+racer.getName()+"       "+ racer.getWins()+"   "+racer.getRewards());
+        }
+
     }
 
     private Map<Integer, String> loadStudentIdMap(){
@@ -67,5 +88,6 @@ class Board {
         }
         return idMap;
     }
+
 
 }
