@@ -21,6 +21,7 @@ public class Television
     private String brand;
     private int volume;
     private DisplayType display;
+
     private final Tuner tuner = new Tuner();  // set up internally and used for channel management
 
     public Television() {
