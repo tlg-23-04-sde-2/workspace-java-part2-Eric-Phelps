@@ -38,7 +38,7 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-class Board {
+public class Board {
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();//tree map maintains natural order of the keys.
 
@@ -56,18 +56,25 @@ class Board {
     }
 
     //TODO: render this data pretty, for display to the end user.
-    void show() {
-        Collection<DuckRacer> racers = racerMap.values();
-        System.out.println("DUCK RACE RESULTS");
-        System.out.println("=================");
-        System.out.println();
-        System.out.println("id       name       wins   rewards");
-        System.out.println("__       ____       ____   _______");
-        //see java part 1 session 5 formatted output
-        for (DuckRacer racer : racers)
-        {
-            System.out.println(racer.getId()+"       "+racer.getName()+"       "+ racer.getWins()+"   "+racer.getRewards());
+    public void show() {
+        if (racerMap.isEmpty()){
+            System.out.println("There is currently no results to show.");
         }
+        else{
+            Collection<DuckRacer> racers = racerMap.values();
+            System.out.println("DUCK RACE RESULTS");
+            System.out.println("=================");
+            System.out.println();
+            System.out.println("id       name       wins   rewards");
+            System.out.println("__       ____       ____   _______");
+            //see java part 1 session 5 formatted output
+            for (DuckRacer racer : racers)
+            {
+                System.out.println(racer.getId()+"       "+racer.getName()+"       "+ racer.getWins()+"   "+racer.getRewards());
+            }
+        }
+
+
 
     }
 
