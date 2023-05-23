@@ -3,6 +3,7 @@ package com.duckrace.app;
 import com.duckrace.Board;
 import com.duckrace.Reward;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -12,9 +13,9 @@ import java.util.Scanner;
  * Prompts user for inputs and "forwards" those inputs into the system (BACKEND, this will be my bread and butter)
  * Backend makes all the money.
  */
-public class DuckRaceApp {
+public class DuckRaceApp implements Serializable {
     private final Scanner scanner = new Scanner(System.in); //read inputs from the console
-    private Board board = new Board();
+    private Board board = Board.getInstance();
 
     public void execute(){
         welcome();
